@@ -1,6 +1,9 @@
 from .utils import Atom, Residue, ActiveSite
 from .io import generate_distance_types
 import numpy as np
+from scipy.cluster.hierarchy import single, fcluster
+from scipy.cluster.hierarchy import dendrogram, linkage
+from scipy.spatial.distance import pdist
 
 def compute_similarity(site_a, site_b):
     """
