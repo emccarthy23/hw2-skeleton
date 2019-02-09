@@ -1,5 +1,5 @@
 from .utils import Atom, Residue, ActiveSite
-
+from .io import generate_distance_types
 def compute_similarity(site_a, site_b):
     """
     Compute the similarity between two given ActiveSite instances.
@@ -11,6 +11,7 @@ def compute_similarity(site_a, site_b):
     similarity = 0.0
     list_size = 0
     global_counter = 0
+    distance_types = generate_distance_types()
     """
 	My similarity metric is based off of the algorithm PocketMatch (Yeturu. 2008. BMC Bioinformatics). 
 	It uses the distance between three representative points (the alpha carbon, the beta carbon, and 
