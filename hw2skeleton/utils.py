@@ -18,14 +18,15 @@ class Residue:
     A simple class for an amino acid residue
     """
 
-    def __init__(self, type, number):
+    def __init__(self, type, number, group):
         self.type = type
         self.number = number
+	self.group = group
         self.atoms = []
 
     # Overload the __repr__ operator to make printing simpler.
     def __repr__(self):
-        return "{0} {1}".format(self.type, self.number)
+        return "{0} {1} {2}".format(self.type, self.number, self.group)
 
 class ActiveSite:
     """
