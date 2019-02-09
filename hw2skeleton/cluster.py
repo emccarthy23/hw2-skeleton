@@ -11,29 +11,29 @@ def compute_similarity(site_a, site_b):
     similarity = 0.0
     list_size = 0
     global_counter = 0
-       """
-My similarity metric is based off of the algorithm PocketMatch (Yeturu. 2008. BMC Bioinformatics). 
-It uses the distance between three representative points (the alpha carbon, the beta carbon, and 
-the centroid of the side chain atoms) in each residue to create a set of distances to classify each active site. 
-The distances are sorted into 90 groups based on the atom type and group type for the two residues within 
-biologically relevant amino acids groups (e.g. Group-0:Hydrophobic; Group-1:Positive charge; Group-2:Negative charge;
-Group-3:Aromatic; Group-4:Polar). 
-The similarity score for two active sites is calculated by calculating the net average of how many distances 
-within distance type for two residues are within a threshold of 0.5 A (this distance cutoff was recommended 
-in the original algorithm based on the average amount of error in a PDB structure). 
-For my similarity metric, I converted this similarity score to a dissimilarity score (1 – similarity score) 
-so the values would be interpretable as a “distance”.
-Step 1: Assign residues in each active site to the following groups (This is coded into read_active_site). Group-0:Hydrophobic; Group-1:Positive charge; Group-2:Negative charge; Group-3:Aromatic; Group-4:Polar
-
-Step 2: Compute the Centroid for each residue in each active site (This is coded into the read_active_site). The centroid is the centroid coordinate for the side chain atoms (not including CB)
-
-Step 3: Compute distances between all residues within one active site (This is coded into the read_active_site). Compute distance between CA, CB, and Centroid for each residue in each active site. Bin distances in ascending order by "type" with each groupA,groupB,atomA,atomB being a type (so 90 groups since there are 5 groups and 3 atom types)
-
-Step 4: Sort each distance list in ascending order (This is coded into the read_active_site).
-
-Step 5: Align distances for two active sites. For site_a and site_b, determine for each type of distance how many distances are within a distance of 0.5 Angstroms.
-Step 6: Score alignment. Create score for alignment by taking sum of all distances that aligned divided by sum of the max of the length for each distance list between the two residues. Score of 1 is perfect alignment and score of 0 is no alignment
-Step 7: Change similarity score into dissimilarity score. Convert score to 1- score so that a score of 0 is for the same residues and a score of 1 is for residues with zero aligning distances
+    """
+	My similarity metric is based off of the algorithm PocketMatch (Yeturu. 2008. BMC Bioinformatics). 
+	It uses the distance between three representative points (the alpha carbon, the beta carbon, and 
+	the centroid of the side chain atoms) in each residue to create a set of distances to classify each active site. 
+	The distances are sorted into 90 groups based on the atom type and group type for the two residues within 
+	biologically relevant amino acids groups (e.g. Group-0:Hydrophobic; Group-1:Positive charge; Group-2:Negative charge;
+	Group-3:Aromatic; Group-4:Polar). 
+	The similarity score for two active sites is calculated by calculating the net average of how many distances 
+	within distance type for two residues are within a threshold of 0.5 A (this distance cutoff was recommended 
+	in the original algorithm based on the average amount of error in a PDB structure). 
+	For my similarity metric, I converted this similarity score to a dissimilarity score (1 – similarity score) 
+	so the values would be interpretable as a “distance”.
+	Step 1: Assign residues in each active site to the following groups (This is coded into read_active_site). Group-0:Hydrophobic; Group-1:Positive charge; Group-2:Negative charge; Group-3:Aromatic; Group-4:Polar
+	
+	Step 2: Compute the Centroid for each residue in each active site (This is coded into the read_active_site). The centroid is the centroid coordinate for the side chain atoms (not including CB)
+	
+	Step 3: Compute distances between all residues within one active site (This is coded into the read_active_site). Compute distance between CA, CB, and Centroid for each residue in each active site. Bin distances in ascending order by "type" with each groupA,groupB,atomA,atomB being a type (so 90 groups since there are 5 groups and 3 atom types)
+	
+	Step 4: Sort each distance list in ascending order (This is coded into the read_active_site).
+	
+	Step 5: Align distances for two active sites. For site_a and site_b, determine for each type of distance how many distances are within a distance of 0.5 Angstroms.
+	Step 6: Score alignment. Create score for alignment by taking sum of all distances that aligned divided by sum of the max of the length for each distance list between the two residues. Score of 1 is perfect alignment and score of 0 is no alignment
+	Step 7: Change similarity score into dissimilarity score. Convert score to 1- score so that a score of 0 is for the same residues and a score of 1 is for residues with zero aligning distances
 
     """
     

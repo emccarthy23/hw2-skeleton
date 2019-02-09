@@ -20,8 +20,8 @@ class Residue:
 
     def __init__(self, type, number, group):
         self.type = type
-        self.number = number
-	self.group = group
+       	self.number = number
+        self.group = group
         self.atoms = []
 
     # Overload the __repr__ operator to make printing simpler.
