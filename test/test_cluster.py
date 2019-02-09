@@ -10,7 +10,8 @@ def test_similarity():
     activesite_b = io.read_active_site(filename_b)
 
     # update this assertion
-    assert cluster.compute_similarity(activesite_a, activesite_b) == 0.9948864621251516
+    assert cluster.compute_similarity(activesite_a, activesite_b) == 0.959349593495935
+    assert cluster.compute_similarity(activesite_a, activesite_a) == 0.0
 
 def test_partition_clustering():
     # tractable subset

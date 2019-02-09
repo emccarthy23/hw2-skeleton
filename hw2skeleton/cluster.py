@@ -1,5 +1,7 @@
 from .utils import Atom, Residue, ActiveSite
 from .io import generate_distance_types
+import numpy as np
+
 def compute_similarity(site_a, site_b):
     """
     Compute the similarity between two given ActiveSite instances.
@@ -78,6 +80,14 @@ def cluster_by_partitioning(active_sites,number_clusters):
             (this is really a list of clusters, each of which is list of
             ActiveSite instances)
     """
+    #Compute a distance matrix for all the sites
+    n = len(active_sites)
+    d = np.zeros((n,n))
+
+    for i in range(n):
+        for j in range(i,n):
+            d[i,j] = compute_similarity(active_sites_list[i], active_sites_list[j])
+            d[j,i] = d[i,j]
     # Number of clusters
     k = number_clusters
     cluster_dict = {}
