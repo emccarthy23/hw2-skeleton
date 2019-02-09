@@ -86,7 +86,7 @@ def cluster_by_partitioning(active_sites,number_clusters):
 
     for i in range(n):
         for j in range(i,n):
-            d[i,j] = compute_similarity(active_sites_list[i], active_sites_list[j])
+            d[i,j] = compute_similarity(active_sites[i], active_sites[j])
             d[j,i] = d[i,j]
     # Number of clusters
     k = number_clusters
@@ -147,7 +147,7 @@ def create_dendogram(active_sites):
              
     for i in range(n):
         for j in range(i,n):
-            d[i,j] = compute_similarity(active_sites_list[i], active_sites_list[j])
+            d[i,j] = compute_similarity(active_sites[i], active_sites[j])
             d[j,i] = d[i,j]
    
     #Converts distance matrix to an upper triangular matrix
